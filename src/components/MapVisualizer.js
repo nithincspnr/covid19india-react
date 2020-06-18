@@ -21,7 +21,7 @@ import {
 import classnames from 'classnames';
 import {max} from 'd3-array';
 import {json} from 'd3-fetch';
-import {geoMercator, geoPath} from 'd3-geo';
+import {geoIdentity, geoMercator, geoPath} from 'd3-geo';
 import {scaleSqrt, scaleSequential} from 'd3-scale';
 // eslint-disable-next-line
 // import worker from 'workerize-loader!../workers/mapVisualizer';
@@ -135,7 +135,7 @@ function MapVisualizer({
       geoData.objects[mapMeta.graphObjectStates || mapMeta.graphObjectDistricts]
     );
 
-    return geoPath(geoMercator().fitSize([width, height], topology));
+    return geoPath(geoIdentity());
   }, [geoData, mapMeta.graphObjectDistricts, mapMeta.graphObjectStates]);
 
   const fillColor = useCallback(
